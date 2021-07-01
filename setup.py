@@ -7,7 +7,10 @@ def get_last_version():
     process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
     outputstr = str(output)
-    version = outputstr[3:-3]  # "b'vXX.XX.XX\\n'" becomes "XX.XX.XX"
+    outputstr = outputstr[3:-3]  # "b'vXX.XX.XX\\n'" becomes "XX.XX.XX"
+    outputstr.replace('-', '.')
+    major, minor, patch, *_ = outputstr.split('.')
+    version = f'{major}.{minor}.{patch}'
     return version
 
 
@@ -27,6 +30,10 @@ def push_new_version_as_tag(version):
 
 
 if __name__ == '__main__':
+    import os
+
+    print(os.getcwd())
+
     with open("README.md", "r") as fh:
         long_description = fh.read()
 
