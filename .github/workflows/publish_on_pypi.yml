@@ -39,4 +39,4 @@ jobs:
           password: ${{ secrets.PYPI_API_TOKEN }}
       - name: Push new version as tag
         run: |
-          python setup_versioning.py pushtag
+          python setup.py pushtag
