@@ -1,6 +1,6 @@
 from typing import Tuple, List, Callable, Optional
 
-from property_settings.setting_type import SettingType
+from propsettings.setting_type import SettingType
 
 
 class Selectable(SettingType):

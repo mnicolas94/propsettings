@@ -3,7 +3,7 @@ from typing import Iterable
 
 import yaml
 
-from property_settings.setting import Setting
+from propsettings.setting import Setting
 
 
 def _build_setting(member_name, label=None, sort_order=0, setting_value_type=None, setting_type=None, decorators=None):

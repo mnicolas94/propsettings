@@ -1,8 +1,8 @@
 import copy
 from typing import List
 
-from property_settings.decorator import Decorator
-from property_settings.setting_type import SettingType
+from propsettings.decorator import Decorator
+from propsettings.setting_type import SettingType
 
 
 class Setting(property):
