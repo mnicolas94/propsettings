@@ -8,7 +8,7 @@ def get_last_version():
     output, error = process.communicate()
     outputstr = str(output)
     outputstr = outputstr[3:-3]  # "b'vXX.XX.XX\\n'" becomes "XX.XX.XX"
-    outputstr.replace('-', '.')
+    outputstr = outputstr.replace('-', '.')
     major, minor, patch, *_ = outputstr.split('.')
     version = f'{major}.{minor}.{patch}'
     return version
