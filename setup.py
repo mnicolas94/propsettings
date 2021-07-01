@@ -30,6 +30,10 @@ def push_new_version_as_tag(version):
 
 
 if __name__ == '__main__':
+    import os
+
+    print(os.getcwd())
+
     with open("README.md", "r") as fh:
         long_description = fh.read()
 
