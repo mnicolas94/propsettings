@@ -30,10 +30,6 @@ def push_new_version_as_tag(version):
 
 
 if __name__ == '__main__':
-    import os
-
-    print(os.getcwd())
-
     with open("README.md", "r") as fh:
         long_description = fh.read()
 
@@ -49,7 +45,7 @@ if __name__ == '__main__':
         long_description=long_description,
         long_description_content_type="text/markdown",
         url="https://github.com/mnicolas94/propsettings",
-        packages=['propsettings'],
+        packages=['propsettings', 'propsettings.decorators', 'propsettings.setting_types'],
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
