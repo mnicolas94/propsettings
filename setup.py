@@ -1,24 +1,56 @@
 import setuptools
+import subprocess
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
 
-setuptools.setup(
-    name="propsettings",
-    version="0.1.0",
-    author="Miguel Nicolás-Díaz",
-    author_email="miguelcok27@gmail.com",
-    description="A python package to define how a class member should be rendered in a UI.",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/mnicolas94/propsettings",
-    packages=['propsettings'],
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-        'Development Status :: 3 - Alpha',
-        'Intended Audience :: Developers',
-    ],
-    python_requires='>=3.6',
-)
+def get_last_version():
+    bash_command = "git describe --tags --abbrev=0 --match v[0-9]*"
+    process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    outputstr = str(output)
+    version = outputstr[3:-3]  # "b'vXX.XX.XX\\n'" becomes "XX.XX.XX"
+    return version
+
+
+def bump_patch(version: str):
+    major, minor, patch = version.split('.')
+    bumped = str(int(patch) + 1)
+    return f'{major}.{minor}.{bumped}'
+
+
+def push_new_version_as_tag(version):
+    bash_command = f"git tag v{version}"
+    process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    bash_command = f"git push origin v{version}"
+    process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+
+
+if __name__ == '__main__':
+    with open("README.md", "r") as fh:
+        long_description = fh.read()
+
+    last_version = get_last_version()
+    version = bump_patch(last_version)
+
+    setuptools.setup(
+        name="propsettings",
+        version=version,
+        author="Miguel Nicolás-Díaz",
+        author_email="miguelcok27@gmail.com",
+        description="A python package to define how a class member should be rendered in a UI.",
+        long_description=long_description,
+        long_description_content_type="text/markdown",
+        url="https://github.com/mnicolas94/propsettings",
+        packages=['propsettings'],
+        classifiers=[
+            "Programming Language :: Python :: 3",
+            "License :: OSI Approved :: MIT License",
+            "Operating System :: OS Independent",
+            'Development Status :: 3 - Alpha',
+            'Intended Audience :: Developers',
+        ],
+        python_requires='>=3.6',
+    )
+
+    push_new_version_as_tag(version)
