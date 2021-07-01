@@ -9,6 +9,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Run a one-line script
         run: git describe --tags --abbrev=0 --match v[0-9]*
