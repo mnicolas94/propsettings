@@ -29,12 +29,21 @@ def push_new_version_as_tag(version):
     output, error = process.communicate()
 
 
+def echo(string):
+    bash_command = f"echo {string}"
+    process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+
+
 if __name__ == '__main__':
     with open("README.md", "r") as fh:
         long_description = fh.read()
 
     last_version = get_last_version()
     version = bump_patch(last_version)
+
+    echo(f'last version: {last_version}')
+    echo(f'new version: {version}')
 
     setuptools.setup(
         name="propsettings",
@@ -56,4 +65,5 @@ if __name__ == '__main__':
         python_requires='>=3.6',
     )
 
+    echo('Pushing new tag ...')
     push_new_version_as_tag(version)
