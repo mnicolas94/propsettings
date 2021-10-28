@@ -49,7 +49,14 @@ if __name__ == '__main__':
             long_description=long_description,
             long_description_content_type="text/markdown",
             url="https://github.com/mnicolas94/propsettings",
-            packages=['propsettings', 'propsettings.decorators', 'propsettings.setting_types'],
+            packages=[
+                'propsettings',
+                'propsettings.decorators',
+                'propsettings.setting_types'
+            ],
+            install_requires=[
+                'pyyaml'
+            ],
             classifiers=[
                 "Programming Language :: Python :: 3",
                 "License :: OSI Approved :: MIT License",

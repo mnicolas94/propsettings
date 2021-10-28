@@ -1,9 +1,11 @@
 import inspect
-from typing import Iterable
+from typing import Iterable, Type
 
 import yaml
 
+from propsettings.decorator import Decorator
 from propsettings.setting import Setting
+from propsettings.setting_type import SettingType
 
 
 def _build_setting(member_name, label=None, sort_order=0, setting_value_type=None, setting_type=None, decorators=None):
@@ -29,7 +31,15 @@ def _build_setting(member_name, label=None, sort_order=0, setting_value_type=Non
 	return stg
 
 
-def register_as_setting(clazz, member_name, label=None, sort_order=0, setting_value_type=None, setting_type=None, decorators=None):
+def register_as_setting(
+		clazz: type,
+		member_name: str,
+		label: str = None,
+		sort_order: int = 0,
+		setting_value_type: type = None,
+		setting_type: Type[SettingType] = None,
+		decorators: Type[Decorator] = None
+):
 	"""
 	Registrar un miembro de una clase como parámetro configurable (Setting) de dicha clase.
 
@@ -41,6 +51,9 @@ def register_as_setting(clazz, member_name, label=None, sort_order=0, setting_va
 
 	register_as_setting(A, 'a')
 
+	:param decorators:
+	:param setting_value_type:
+	:param sort_order:
 	:param clazz: clase a la que se desea añadir la propiedad. Si es una instancia entonces se obtiene su clase.
 	:param member_name: nombre del miembro de la clase.
 	:param label: [opcional] eqiqueta que identifica al parámetro configurable.
