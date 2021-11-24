@@ -2,7 +2,8 @@
 
 This packages enables you to decorate class member variables as a Setting. A Setting is a kind of property that let you define some characteristics of the variable that are taken into account by a user interface code to render that variable properly.
 
-
+# Installation
+```pip install propsettings```
 
 # Usage
 To register a member variable as a Setting you must use the method ```register_as_setting```, e.g.
