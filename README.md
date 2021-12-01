@@ -1,6 +1,6 @@
 # propsettings
 
-This packages enables you to decorate class member variables as a Setting. A Setting is a kind of property that let you define some characteristics of the variable that are taken into account by a user interface code to render that variable properly.
+This packages enables you to decorate class member variables as a Setting. A Setting is a type of property that allows defining characteristics of a variable that are taken into account by a user interface code to render that variable properly.
 
 # Installation
 ```pip install propsettings```
