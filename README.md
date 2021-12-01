@@ -33,6 +33,8 @@ register_as_setting(Example, "_variable", setting_value_type=str)
 
 Sometimes is desirable to draw (in the user interface) your variable in a different way than the default. For example, the default way to show an integer value is with a text edit validated to only accept numeric values. However, maybe your variable only makes sense in the range [0 , 10]. In that case is better to have a slider than a text edit. That is when setting types come into play. A setting type is a type of annotation that gives more information about how to draw and validate a variable. For example:
 ```python
+from propsettings.setting_types.range_setting_type import Range
+
 register_as_setting(Example, "_variable", setting_type=Range(0, 10))
 ```
 
