@@ -1,5 +1,5 @@
 import inspect
-from typing import Iterable, Type
+from typing import Iterable, Type, List
 
 import yaml
 
@@ -37,8 +37,8 @@ def register_as_setting(
 		label: str = None,
 		sort_order: int = 0,
 		setting_value_type: type = None,
-		setting_type: Type[SettingType] = None,
-		decorators: Type[Decorator] = None
+		setting_type: SettingType = None,
+		decorators: List[Decorator] = None
 ):
 	"""
 	Registrar un miembro de una clase como parámetro configurable (Setting) de dicha clase.
